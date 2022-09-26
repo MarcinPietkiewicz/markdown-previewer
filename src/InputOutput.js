@@ -7,7 +7,15 @@ class InputOutput extends React.Component {
     this.state = {text: ''}
     
     }
+render() {
+    return (
+        <React.Fragment>
+            test
 
+
+        </React.Fragment>
+    )
+}
 
 
 }
