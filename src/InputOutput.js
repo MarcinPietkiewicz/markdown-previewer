@@ -7,20 +7,23 @@ class InputOutput extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: "" };
+    this.getMarkdownText = this.getMarkdownText.bind(this);
   }
 
-  getMarkdownText() {
-    var rawMarkup = marked.parse("# header This is Markdown.\n longer text  ");
-    return { __html: rawMarkup };
+  getMarkdownText(e) {
+    let rawMarkup = marked.parse(e.target.value,  { breaks: true});
+    this.setState({ text: rawMarkup });
+    // return { __html: rawMarkup };
+    // return rawMarkup;
   }
 
   render() {
     return (
       <React.Fragment>
-        <textarea id="editor"></textarea>
+        <textarea id="editor" onChange={this.getMarkdownText}></textarea>
         <div id="preview">
-           <div dangerouslySetInnerHTML={this.getMarkdownText()} />
-   <Markdown value={`# header This is Markdown. \n longer text`} />
+          <div dangerouslySetInnerHTML={{ __html: this.state.text}} />
+          {/* <Markdown value={`# header This is Markdown. \n longer text`} /> */}
         </div>
       </React.Fragment>
     );
@@ -29,4 +32,4 @@ class InputOutput extends React.Component {
 
 export default InputOutput;
 
-   <Markdown value={`- header This is Markdown. \n longer text`}/>
+<Markdown value={`- header This is Markdown. \n longer text`} />;
