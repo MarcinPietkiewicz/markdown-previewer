@@ -1,6 +1,6 @@
 import React from "react";
 import "./InputOutput.css";
-// import Markdown from "marked-react";
+import Markdown from "marked-react";
 import { marked } from "marked";
 
 class InputOutput extends React.Component {
@@ -10,7 +10,7 @@ class InputOutput extends React.Component {
   }
 
   getMarkdownText() {
-    var rawMarkup = marked.parse("# header This is _Markdown_.");
+    var rawMarkup = marked.parse("# header This is Markdown.\n longer text  ");
     return { __html: rawMarkup };
   }
 
@@ -19,13 +19,14 @@ class InputOutput extends React.Component {
       <React.Fragment>
         <textarea id="editor"></textarea>
         <div id="preview">
-          <div dangerouslySetInnerHTML={this.getMarkdownText()} />
+           <div dangerouslySetInnerHTML={this.getMarkdownText()} />
+   <Markdown value={`# header This is Markdown. \n longer text`} />
         </div>
       </React.Fragment>
     );
   }
 }
 
-//marked.parse('# Marked in the browser\n\nRendered by **marked**.');
-
 export default InputOutput;
+
+   <Markdown value={`- header This is Markdown. \n longer text`}/>
