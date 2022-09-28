@@ -1,0 +1,13 @@
+#editor {
+    height: 4em;
+    width: 50em;
+    font-size:14px;
+}
+
+#preview {
+    height: 5em;
+    width: 50em;
+    margin:20px 0px;
+    background-color:gray;
+    font-size:14px;
+}
