@@ -20,22 +20,15 @@ class InputOutput extends React.Component {
   }
 
   componentDidMount() {
-    // inline code, a code block, a list item, a blockquote, an image, and bolded text
-    this.setState({text: placeholder})
-    // this.getMarkdownText(placeholder);
-
+    this.setState({ text: placeholder });
   }
 
   handleChange(e) {
-    this.setState({text: e.target.value});
-    // this.getMarkdownText(e.target.value);
+    this.setState({ text: e.target.value });
   }
 
   getMarkdownText(input) {
     let rawMarkup = marked.parse(input, { breaks: true });
-    // console.log(rawMarkup);
-    // this.setState({ text: rawMarkup });
-    // return { __html: rawMarkup };
     return rawMarkup;
   }
 
@@ -43,6 +36,7 @@ class InputOutput extends React.Component {
     return (
       <React.Fragment>
         <textarea id="editor" value={this.state.text} onChange={this.handleChange}></textarea>
+        <div id="output-title">Markdown text:</div>
         <div id="preview" dangerouslySetInnerHTML={{ __html: this.getMarkdownText(this.state.text) }} />
       </React.Fragment>
     );
@@ -91,7 +85,7 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want!
 1. And last but not least, let's not forget embedded images:
 
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+![Random image](https://picsum.photos/600/300)
 `;
 
 export default InputOutput;
