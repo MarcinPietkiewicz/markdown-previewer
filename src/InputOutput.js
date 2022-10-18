@@ -3,6 +3,7 @@ import "./InputOutput.css";
 // import Markdown from "marked-react";
 import { marked } from "marked";
 import Prism from "prismjs";
+import styles from "./prism.css";
 
 class InputOutput extends React.Component {
   constructor(props) {
@@ -16,34 +17,33 @@ class InputOutput extends React.Component {
         return Prism.highlight(code, Prism.languages.javascript, "javascript");
       },
     });
-
-
-  
   }
 
   componentDidMount() {
     // inline code, a code block, a list item, a blockquote, an image, and bolded text
+    this.setState({text: placeholder})
+    // this.getMarkdownText(placeholder);
 
-    this.getMarkdownText(placeholder);
   }
 
-  handleChange(e){
-this.getMarkdownText(e.target.value);
+  handleChange(e) {
+    this.setState({text: e.target.value});
+    // this.getMarkdownText(e.target.value);
   }
 
   getMarkdownText(input) {
     let rawMarkup = marked.parse(input, { breaks: true });
-    console.log(rawMarkup);
-    this.setState({ text: rawMarkup });
+    // console.log(rawMarkup);
+    // this.setState({ text: rawMarkup });
     // return { __html: rawMarkup };
-    // return rawMarkup;
+    return rawMarkup;
   }
 
   render() {
     return (
       <React.Fragment>
-        <textarea id="editor" onChange={this.handleChange}></textarea>
-        <div id="preview" dangerouslySetInnerHTML={{ __html: this.state.text }} />
+        <textarea id="editor" value={this.state.text} onChange={this.handleChange}></textarea>
+        <div id="preview" dangerouslySetInnerHTML={{ __html: this.getMarkdownText(this.state.text) }} />
       </React.Fragment>
     );
   }
@@ -93,6 +93,5 @@ And here. | Okay. | I think we get it.
 
 ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
 `;
-
 
 export default InputOutput;
